@@ -31,7 +31,7 @@ public class Main {
         }
         else if (opcion == 3) {
 
-            System.out.println("Bienvenido al conversor de temperatura, a continuacion introduzca la temperatura deseada en celsius: ");
+            System.out.println("Bienvenido al conversor de temperatura, a continuacion introduzca la temperatura deseada en celsius:");
 
             float celsius = sc.nextFloat();
 
