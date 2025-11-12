@@ -1,97 +1,109 @@
 import java.util.Scanner;
-public class Main {
-    public static void main(String args[]) {
+
+public class Primero {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        int opcion;
+        char continuar;
 
-        // Menu programa
-        System.out.println("Bienvenido al menu, a continuacion verás 5 opciones de programa.");
-        System.out.println("1) Calculadora.");
-        System.out.println("2) Calculador de edad.");
-        System.out.println("3) Conversor de temperatura.");
-        System.out.println("4) Contador de Palabras i Caracteres.");
-        System.out.println("5) Generador de saludos.");
-        System.out.println("Introduce una opción del 1 al 5.");
+        do {
+            System.out.println("\n=== MENÚ PRINCIPAL ===");
+            System.out.println("1) Calculadora");
+            System.out.println("2) Calculador de edad");
+            System.out.println("3) Conversor de temperatura");
+            System.out.println("4) Contador de Palabras y Caracteres");
+            System.out.println("5) Generador de saludos");
+            System.out.println("0) Salir");
+            System.out.print("Introduce una opción del 0 al 5: ");
 
-        int opcion = sc.nextInt();
+            opcion = sc.nextInt();
+            sc.nextLine(); // 
 
-        System.out.println("Has escogido la opción " + opcion+".");
+            System.out.println("\nHas escogido la opción " + opcion + ".");
 
-        if (opcion == 1) {
-            double resultado = 0;
+            switch (opcion) {
+                case 1:
 
-            System.out.print("Ingresa el primer número: ");
-            double num1 = sc.nextDouble();
+                    double resultado = 0;
 
-            System.out.print("Ingresa el operador (+, -, *, /): ");
-            char operador = sc.next().charAt(0);
+                    System.out.print("Ingresa el primer número: ");
+                    double num1 = sc.nextDouble();
 
-            System.out.print("Ingresa el segundo número a operar: ");
-            double num2 = sc.nextDouble();
+                    System.out.print("Ingresa el operador (+, -, *, /): ");
+                    char operador = sc.next().charAt(0);
 
-            if (operador == '+') {
-                resultado = num1 + num2;
-                System.out.println("Resultado: " + resultado);
-            } else if (operador == '-') {
-                resultado = num1 - num2;
-                System.out.println("Resultado: " + resultado);
-            } else if (operador == '*') {
-                resultado = num1 * num2;
-                System.out.println("Resultado: " + resultado);
-            } else if (operador == '/') {
-                if (num2 != 0) {
-                    resultado = num1 / num2;
+                    System.out.print("Ingresa el segundo número: ");
+                    double num2 = sc.nextDouble();
+
+                    if (operador == '+') resultado = num1 + num2;
+                    else if (operador == '-') resultado = num1 - num2;
+                    else if (operador == '*') resultado = num1 * num2;
+                    else if (operador == '/') {
+                        if (num2 != 0) resultado = num1 / num2;
+                        else {
+                            System.out.println("Error: no se puede dividir entre cero.");
+                            break;
+                        }
+                    } else {
+                        System.out.println("Operador no válido.");
+                        break;
+                    }
+
                     System.out.println("Resultado: " + resultado);
-                } else {
-                    System.out.println("Error: no se puede dividir entre cero.");
-                }
-            } else {
-                System.out.println("Operador no válido.");
+                    break;
+
+                case 2:
+                    
+                    System.out.print("Introduce tu año de nacimiento: ");
+                    int anoNacimiento = sc.nextInt();
+                    int edad = 2025 - anoNacimiento;
+                    System.out.println("Tu edad es: " + edad + " años.");
+                    break;
+
+                case 3:
+                    
+                    System.out.print("Introduce la temperatura en Celsius: ");
+                    float celsius = sc.nextFloat();
+                    float kelvin = celsius + 273.15f;
+                    float fahrenheit = celsius * 1.8f + 32;
+                    System.out.println("Fahrenheit: " + fahrenheit);
+                    System.out.println("Kelvin: " + kelvin);
+                    break;
+
+                case 4:
+                    
+                    System.out.println("Introduce una cadena de texto:");
+                    String texto = sc.nextLine();
+                    int numCaracteres = texto.length();
+                    String[] palabras = texto.trim().split("\\s+");
+                    int numPalabras = texto.trim().isEmpty() ? 0 : palabras.length;
+                    System.out.println("Número de caracteres: " + numCaracteres);
+                    System.out.println("Número de palabras: " + numPalabras);
+                    break;
+
+                case 5:
+                    
+                    System.out.print("Introduce tu nombre: ");
+                    String nombre = sc.nextLine();
+                    System.out.println("¡Hola, " + nombre + "! Espero que tengas un excelente día 😊");
+                    break;
+
+                case 0:
+                    System.out.println("Saliendo del programa... ¡Hasta luego!");
+                    sc.close();
+                    return;
+
+                default:
+                    System.out.println("Has escogido una opción incorrecta. Intenta nuevamente.");
             }
-        }
-        else if (opcion == 2) {
 
-            System.out.println("Bienvenido al calculador de edad, a continuación introduzca su año de nacimiento:");
+            
+            System.out.print("\n¿Deseas volver al menú? (S/N): ");
+            continuar = sc.next().charAt(0);
+            sc.nextLine(); 
 
-            int anoNacimiento = sc.nextInt();
-            int operacionEdad = 2025 - anoNacimiento;
+        } while (continuar == 'S' || continuar == 's');
 
-            System.out.println("Su año de nacimiento es " + anoNacimiento + " y su edad es " + operacionEdad + ".");
-
-        }
-        else if (opcion == 3) {
-
-            System.out.println("Bienvenido al conversor de temperatura, a continuacion introduzca la temperatura deseada en celsius:");
-
-            float celsius = sc.nextFloat();
-
-            float kelvins = celsius + 273.15f;
-            float fahrenheit = celsius * 1.8f + 32;
-
-            System.out.println("Fahrenheit: "+ fahrenheit);
-            System.out.println("Kelvin: " + kelvins);
-
-
-        }
-        else if (opcion == 4) {
-
-            System.out.println("Bienvenido al contador de palabras i caracteres, a continuación introduzca una cadena de texto:");
-
-
-
-        }
-        else if (opcion == 5) {
-
-        }
-        else {
-            System.out.println("Has escogido una opción incorrecta.");
-        }
-
-
-
-
-
-        // Calculador de edad
-
+        System.out.println("\nPrograma finalizado. ¡Gracias por usarlo!");
     }
 }
-
